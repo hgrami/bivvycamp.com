@@ -1,0 +1,183 @@
+/* bivvycamp.com — the app's own design system, on the web.
+   Tokens are copied verbatim from mobile/src/theme.ts (light + dark), so the
+   site and the app are one thing. Dark follows the visitor's setting. */
+
+:root {
+  --bg: #ffffff;
+  --surface: #f6f7f3;
+  --surface2: #eef1ea;
+  --ink: #1b2420;
+  --ink2: #3d4a42;
+  --muted: #5f6a63;
+  --line: #d9dfd7;
+  --line2: #8a948d;
+  --accent: #2f6f3e;
+  --accent-ink: #245a32;
+  --accent-soft: #e2eee4;
+  --on-accent: #ffffff;
+  --warning: #7a4f00;
+  --warning-soft: #f9e8d3;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1411;
+    --surface: #161c18;
+    --surface2: #1e2621;
+    --ink: #e7ece7;
+    --ink2: #c3ccc5;
+    --muted: #9aa59d;
+    --line: #2a342d;
+    --line2: #5b675e;
+    --accent: #6db57f;
+    --accent-ink: #8fd0a0;
+    --accent-soft: #1c2e22;
+    --on-accent: #0f1411;
+    --warning: #f0a04a;
+    --warning-soft: #3b2a15;
+  }
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation: none !important; transition: none !important; }
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent-ink); text-decoration: none; }
+a:hover, a:focus-visible { text-decoration: underline; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+img, svg { max-width: 100%; }
+
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+.prose { max-width: 68ch; }
+
+/* ---------- header ---------- */
+header.site {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 22px 0;
+}
+.mark { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 20px; color: var(--ink); letter-spacing: -0.01em; }
+.mark svg { width: 28px; height: 28px; }
+nav.site a { margin-left: 22px; font-weight: 600; font-size: 15px; color: var(--ink2); }
+
+/* ---------- hero ---------- */
+.hero {
+  position: relative;
+  display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center;
+  padding: 56px 0 72px;
+}
+.hero::before {
+  /* contour lines, like the corner of a topo map — quiet, both themes */
+  content: ""; position: absolute; inset: -40px -200px 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='600' viewBox='0 0 900 600' fill='none' stroke='%237f8f84' stroke-opacity='.16' stroke-width='1.5'%3E%3Cpath d='M-20 520c140-70 180-160 320-160s210 90 330 60 190-120 290-120'/%3E%3Cpath d='M-20 470c150-60 190-140 320-140s220 80 340 50 170-100 280-100'/%3E%3Cpath d='M-20 420c160-50 200-120 320-120s230 70 350 40 150-80 270-80'/%3E%3Cpath d='M-20 570c130-80 170-180 320-180s200 100 320 70 210-140 300-140'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: bottom right;
+  pointer-events: none; z-index: -1;
+}
+h1 {
+  font-size: clamp(40px, 6vw, 58px); line-height: 1.05; letter-spacing: -0.02em;
+  margin: 0 0 18px; text-wrap: balance;
+}
+.hero p.lede { font-size: 20px; color: var(--ink2); margin: 0 0 28px; max-width: 34ch; }
+.cta-row { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+.pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 20px; border-radius: 999px; font-weight: 700; font-size: 16px;
+}
+.pill.solid { background: var(--accent); color: var(--on-accent); }
+.pill.ghost { border: 1.5px solid var(--line2); color: var(--ink2); }
+.finePrint { margin-top: 14px; font-size: 14px; color: var(--muted); }
+
+/* ---------- the hub card replica ---------- */
+.phone {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 22px;
+  box-shadow: 0 24px 60px -30px rgba(15, 20, 17, 0.45);
+  max-width: 400px; margin-left: auto;
+}
+.chip {
+  display: inline-block; background: var(--surface2); color: var(--ink2);
+  border-radius: 999px; padding: 5px 14px; font-size: 14px; font-weight: 600;
+}
+.phone h2.dates { font-size: 27px; letter-spacing: -0.01em; margin: 12px 0 16px; line-height: 1.2; }
+.countdown {
+  background: var(--accent-soft); color: var(--accent-ink);
+  border-radius: 12px; padding: 12px 14px; font-size: 15px; font-weight: 600;
+  display: flex; gap: 10px; align-items: baseline;
+}
+.countdown .big { font-size: 22px; font-variant-numeric: tabular-nums; }
+.hubrow { display: flex; gap: 16px; align-items: center; margin-top: 18px; }
+.ring {
+  --pct: 64%;
+  width: 76px; height: 76px; border-radius: 50%; flex: none;
+  background: conic-gradient(var(--accent) 0 var(--pct), var(--line) var(--pct) 100%);
+  display: grid; place-items: center;
+}
+.ring > span {
+  width: 58px; height: 58px; border-radius: 50%; background: var(--surface);
+  display: grid; place-items: center; font-weight: 700; font-size: 15px;
+  font-variant-numeric: tabular-nums;
+}
+.nextup { font-size: 15px; color: var(--ink2); }
+.nextup .cap { display: block; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-bottom: 6px; }
+.nextup div { padding: 3px 0; }
+.nextup .warn { color: var(--warning); font-weight: 600; }
+
+/* ---------- features ---------- */
+section.features { padding: 30px 0 10px; }
+.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+  padding: 24px;
+}
+.card h3 { margin: 14px 0 8px; font-size: 19px; letter-spacing: -0.01em; }
+.card p { margin: 0; color: var(--ink2); font-size: 15.5px; }
+.glyph {
+  width: 44px; height: 44px; border-radius: 12px; background: var(--accent-soft);
+  display: grid; place-items: center; color: var(--accent-ink);
+}
+.glyph svg { width: 22px; height: 22px; }
+
+/* ---------- privacy band ---------- */
+.band {
+  margin: 64px 0; padding: 44px; border-radius: 18px;
+  background: var(--surface2); border: 1px solid var(--line);
+}
+.band h2 { font-size: clamp(26px, 4vw, 34px); margin: 0 0 12px; letter-spacing: -0.015em; }
+.band p { color: var(--ink2); max-width: 62ch; margin: 0 0 10px; }
+.band .quiet { color: var(--muted); font-size: 15px; }
+
+/* ---------- inner pages ---------- */
+main.page { padding: 24px 0 72px; }
+main.page h1 { font-size: clamp(30px, 4.5vw, 40px); }
+main.page h2 { font-size: 20px; margin: 34px 0 8px; letter-spacing: -0.01em; }
+main.page p { color: var(--ink2); margin: 8px 0; }
+main.page .meta { color: var(--muted); font-size: 15px; margin-bottom: 26px; }
+.callout {
+  background: var(--accent-soft); border-radius: 12px; padding: 16px 18px;
+  color: var(--accent-ink); font-weight: 600; margin: 20px 0;
+}
+
+/* ---------- footer ---------- */
+footer.site {
+  border-top: 1px solid var(--line); margin-top: 40px; padding: 30px 0 44px;
+  color: var(--muted); font-size: 14px;
+}
+footer.site .row { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+footer.site a { color: var(--ink2); }
+footer.site .attr { max-width: 62ch; margin-top: 12px; }
+
+@media (max-width: 820px) {
+  .hero { grid-template-columns: 1fr; padding-top: 28px; }
+  .phone { margin: 0 auto; }
+  .grid3 { grid-template-columns: 1fr; }
+  .band { padding: 28px 22px; }
+}
